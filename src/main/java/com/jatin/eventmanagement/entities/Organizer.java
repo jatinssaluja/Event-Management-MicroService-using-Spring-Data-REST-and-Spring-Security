@@ -1,0 +1,49 @@
+package com.jatin.eventmanagement.entities;
+
+import java.util.Objects;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.OneToMany;
+
+@Entity
+public class Organizer extends AbstractEntity {
+	
+	private String name;
+	
+	@OneToMany(mappedBy="organizer")
+    private Set<Event> events;
+	
+	
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public Set<Event> getEvents() {
+		return events;
+	}
+
+	public void setEvents(Set<Event> events) {
+		this.events = events;
+	}
+	
+   public boolean equals(Object obj) {
+		
+		return Objects.equals(id, ((Organizer)obj).id);
+		
+	}
+	
+	public int hashCode() {
+		
+		return Objects.hash(id);
+	}
+	
+	
+
+}
